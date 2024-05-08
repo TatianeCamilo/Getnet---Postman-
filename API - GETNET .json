@@ -1,0 +1,502 @@
+{
+	"info": {
+		"_postman_id": "c71fa81d-5bcf-4ec5-83ac-e246a64afe0c",
+		"name": "API - GETNET - POST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29328101"
+	},
+	"item": [
+		{
+			"name": "Todos os campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Valida Status Code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Valida o nome indicado\r",
+							"pm.test(\"Name is Tatiane Corrêa\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Tatiane Corrêa\");\r",
+							"});\r",
+							"\r",
+							"//Valida o JOB indicado\r",
+							"pm.test(\"Job is Quality Assurance\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.job).to.eql(\"Quality Assurance\");\r",
+							"});\r",
+							"\r",
+							"// Extrai o userId retornado na resposta do POST\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.id;\r",
+							"\r",
+							"// Converte o userId para um número, se possível\r",
+							"userId = parseInt(userId);\r",
+							"\r",
+							"// Valida se o userId não está vazio ou nulo após a conversão\r",
+							"pm.expect(userId).to.not.be.NaN;\r",
+							"pm.expect(userId).to.not.be.null;\r",
+							"pm.expect(userId).to.not.be.undefined;\r",
+							"\r",
+							"// Valida se o userId é um número positivo\r",
+							"pm.expect(userId).to.be.a(\"number\");\r",
+							"pm.expect(userId).to.be.above(0);\r",
+							"\r",
+							"// Salva o userId na variável de ambiente para uso posterior\r",
+							"pm.environment.set(\"userId\", userId);\r",
+							"\r",
+							"// Exibe o userId na resposta da aba de testes\r",
+							"pm.test(`O ID do usuário criado é: ${userId}`, function() {\r",
+							"    pm.expect(userId).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"   \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "accept-language",
+						"value": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "cookie",
+						"value": "_gid=GA1.2.373725345.1715029729; __stripe_mid=25a95cec-7691-4f2a-817d-7a12b6c227101ef7e4; __stripe_sid=d050bb74-a984-4366-887d-42486a532fd54e5be7; _ga_CESXN06JTW=GS1.1.1715029729.1.1.1715030922.0.0.0; _ga=GA1.1.923226696.1715029729; _ga_WSM10MMEKC=GS1.2.1715029729.1.1.1715030922.0.0.0"
+					},
+					{
+						"key": "origin",
+						"value": "https://reqres.in"
+					},
+					{
+						"key": "priority",
+						"value": "u=1, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://reqres.in/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"124\", \"Google Chrome\";v=\"124\", \"Not-A.Brand\";v=\"99\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tatiane Corrêa\",\r\n    \"job\": \"Quality Assurance\"\r\n}"
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Campos Vazios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Valida Status Code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Extrai o userId retornado na resposta do POST\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.id;\r",
+							"\r",
+							"// Converte o userId para um número, se possível\r",
+							"userId = parseInt(userId);\r",
+							"\r",
+							"// Valida se o userId não está vazio ou nulo após a conversão\r",
+							"pm.expect(userId).to.not.be.NaN;\r",
+							"pm.expect(userId).to.not.be.null;\r",
+							"pm.expect(userId).to.not.be.undefined;\r",
+							"\r",
+							"// Valida se o userId é um número positivo\r",
+							"pm.expect(userId).to.be.a(\"number\");\r",
+							"pm.expect(userId).to.be.above(0);\r",
+							"\r",
+							"// Salva o userId na variável de ambiente para uso posterior\r",
+							"pm.environment.set(\"userId\", userId);\r",
+							"\r",
+							"// Exibe o userId na resposta da aba de testes\r",
+							"pm.test(`O ID do usuário criado é: ${userId}`, function() {\r",
+							"    pm.expect(userId).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"   \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "accept-language",
+						"value": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "cookie",
+						"value": "_gid=GA1.2.373725345.1715029729; __stripe_mid=25a95cec-7691-4f2a-817d-7a12b6c227101ef7e4; __stripe_sid=d050bb74-a984-4366-887d-42486a532fd54e5be7; _ga_CESXN06JTW=GS1.1.1715029729.1.1.1715030922.0.0.0; _ga=GA1.1.923226696.1715029729; _ga_WSM10MMEKC=GS1.2.1715029729.1.1.1715030922.0.0.0"
+					},
+					{
+						"key": "origin",
+						"value": "https://reqres.in"
+					},
+					{
+						"key": "priority",
+						"value": "u=1, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://reqres.in/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"124\", \"Google Chrome\";v=\"124\", \"Not-A.Brand\";v=\"99\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"job\": \"\"\r\n}"
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Sem o campo Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Valida Status Code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Valida o nome indicado\r",
+							"pm.test(\"Name is Tatiane Corrêa\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Tatiane Corrêa\");\r",
+							"});\r",
+							"\r",
+							"// Extrai o userId retornado na resposta do POST\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.id;\r",
+							"\r",
+							"// Converte o userId para um número, se possível\r",
+							"userId = parseInt(userId);\r",
+							"\r",
+							"// Valida se o userId não está vazio ou nulo após a conversão\r",
+							"pm.expect(userId).to.not.be.NaN;\r",
+							"pm.expect(userId).to.not.be.null;\r",
+							"pm.expect(userId).to.not.be.undefined;\r",
+							"\r",
+							"// Valida se o userId é um número positivo\r",
+							"pm.expect(userId).to.be.a(\"number\");\r",
+							"pm.expect(userId).to.be.above(0);\r",
+							"\r",
+							"// Salva o userId na variável de ambiente para uso posterior\r",
+							"pm.environment.set(\"userId\", userId);\r",
+							"\r",
+							"// Exibe o userId na resposta da aba de testes\r",
+							"pm.test(`O ID do usuário criado é: ${userId}`, function() {\r",
+							"    pm.expect(userId).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"   \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "accept-language",
+						"value": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "cookie",
+						"value": "_gid=GA1.2.373725345.1715029729; __stripe_mid=25a95cec-7691-4f2a-817d-7a12b6c227101ef7e4; __stripe_sid=d050bb74-a984-4366-887d-42486a532fd54e5be7; _ga_CESXN06JTW=GS1.1.1715029729.1.1.1715030922.0.0.0; _ga=GA1.1.923226696.1715029729; _ga_WSM10MMEKC=GS1.2.1715029729.1.1.1715030922.0.0.0"
+					},
+					{
+						"key": "origin",
+						"value": "https://reqres.in"
+					},
+					{
+						"key": "priority",
+						"value": "u=1, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://reqres.in/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"124\", \"Google Chrome\";v=\"124\", \"Not-A.Brand\";v=\"99\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tatiane Corrêa\"\r\n    \r\n}"
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Sem campo Nome",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Valida Status Code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Valida o JOB indicado\r",
+							"pm.test(\"Job is Quality Assurance\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.job).to.eql(\"Quality Assurance\");\r",
+							"});\r",
+							"\r",
+							"// Extrai o userId retornado na resposta do POST\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.id;\r",
+							"\r",
+							"// Converte o userId para um número, se possível\r",
+							"userId = parseInt(userId);\r",
+							"\r",
+							"// Valida se o userId não está vazio ou nulo após a conversão\r",
+							"pm.expect(userId).to.not.be.NaN;\r",
+							"pm.expect(userId).to.not.be.null;\r",
+							"pm.expect(userId).to.not.be.undefined;\r",
+							"\r",
+							"// Valida se o userId é um número positivo\r",
+							"pm.expect(userId).to.be.a(\"number\");\r",
+							"pm.expect(userId).to.be.above(0);\r",
+							"\r",
+							"// Salva o userId na variável de ambiente para uso posterior\r",
+							"pm.environment.set(\"userId\", userId);\r",
+							"\r",
+							"// Exibe o userId na resposta da aba de testes\r",
+							"pm.test(`O ID do usuário criado é: ${userId}`, function() {\r",
+							"    pm.expect(userId).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"   \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "accept-language",
+						"value": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "cookie",
+						"value": "_gid=GA1.2.373725345.1715029729; __stripe_mid=25a95cec-7691-4f2a-817d-7a12b6c227101ef7e4; __stripe_sid=d050bb74-a984-4366-887d-42486a532fd54e5be7; _ga_CESXN06JTW=GS1.1.1715029729.1.1.1715030922.0.0.0; _ga=GA1.1.923226696.1715029729; _ga_WSM10MMEKC=GS1.2.1715029729.1.1.1715030922.0.0.0"
+					},
+					{
+						"key": "origin",
+						"value": "https://reqres.in"
+					},
+					{
+						"key": "priority",
+						"value": "u=1, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://reqres.in/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"124\", \"Google Chrome\";v=\"124\", \"Not-A.Brand\";v=\"99\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"job\": \"Quality Assurance\"\r\n}"
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		}
+	]
+}
